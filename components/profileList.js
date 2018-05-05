@@ -10,6 +10,7 @@ import {
   StyleSheet, TouchableOpacity,
   View, Text, Image, ImageBackground,
 } from 'react-native'
+import axios from 'axios'
 
 import ProfileRow from './ProfileRow'
 
@@ -18,15 +19,47 @@ export default class profileList extends Component {
 
   state={
     users:[
-      {id:1,name:'Liz Miller'},
-      {id:2,name:'John Doe'},
-      {id:3,name:'Deni Hartanto'},
-      {id:4,name:'Liza Faizah'},
-      {id:5,name:'Tutik Utari'}
-    ]
+      {
+        id:1,name:'Liz Miller',position: 'Director of project manajemen at Goldenphase Solar',
+        bio:'i am renewable energy executive with 10 years of experience and have build strong skills in comp...'
+      },
+      {
+        id:2,name:'John Doe',position: 'Director of project manajemen at Goldenphase Solar',
+        bio:'i am renewable energy executive with 10 years of experience and have build strong skills in comp...'
+      },
+      {
+        id:3,name:'Deni Hartanto',position: 'Director of project manajemen at Goldenphase Solar',
+        bio:'i am renewable energy executive with 10 years of experience and have build strong skills in comp...'
+      },
+      {
+        id:4,name:'Liza Faizah',position: 'Director of project manajemen at Goldenphase Solar',
+        bio:'i am renewable energy executive with 10 years of experience and have build strong skills in comp...'
+      },
+      {
+        id:5,name:'Tutik Utari',position: 'Director of project manajemen at Goldenphase Solar',
+        bio:'i am renewable energy executive with 10 years of experience and have build strong skills in comp...'
+      }
+    ],
+    profiles:[],
+    hightlights:[]
+  }
+
+  allProfiles = () =>{
+    axios
+    .get('https://api.backendless.com/A6110560-CDDC-FAFA-FF85-39A2C5B42B00/67F86092-AD36-2C4D-FFF6-C252CFA86800/data/profiles')
+    .then((result) =>{
+      this.setState({profiles: result.data})
+    })
+  }
+
+
+
+  componentWillMount(){
+    this.allProfiles()
   }
 
   render() {
+    console.log(this.state.profiles)
     return(
       <Container>
         <Header />
@@ -36,8 +69,8 @@ export default class profileList extends Component {
             <Left>
               <Thumbnail source={require('../img/user.png')} />
               <Body>
-                <Text>Maria Hart</Text>
-                <Text note>Director of project manajemen at Goldenphase Solar</Text>
+                <Text>{this.state.profiles[0].name}</Text>
+                <Text note>{this.state.profiles[0].position}</Text>
               </Body>
             </Left>
           </CardItem>
@@ -53,7 +86,7 @@ export default class profileList extends Component {
           </CardItem>
           <CardItem>
             <Body>
-              <Text style={{paddingLeft:50}}>i am renewable energy executive with 10 years of experience and have build strong skills in comp...</Text>
+              <Text style={{paddingLeft:50}}>{this.state.users[0].bio}</Text>
             </Body>
           </CardItem>
           <CardItem>
@@ -78,9 +111,9 @@ export default class profileList extends Component {
 
           <Card>
             <Text style={{paddingLeft:25}}>Highlights</Text>
-            {this.state.users.map((user) => (
-              <ProfileRow key={user.id}
-                name={this.props.users}
+            {this.state.profiles.map((profile) => (
+              <ProfileRow key={profile.id}
+                name={this.props.profiles}
               />
 
             ))}
