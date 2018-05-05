@@ -10,9 +10,8 @@ import {
   StyleSheet, TouchableOpacity,
   View, Text, Image, ImageBackground,
 } from 'react-native'
-import { StackNavigator } from 'react-navigation';
 
-
+import ProfileRow from './ProfileRow'
 
 
 export default class profileList extends Component {
@@ -80,10 +79,10 @@ export default class profileList extends Component {
           <Card>
             <Text style={{paddingLeft:25}}>Highlights</Text>
             {this.state.users.map((user) => (
-              <CardItem header bordered key={user.id} title='Highlights'>
-                <Icon active name='md-person' style={{color:"#4ac0e8"}} />
-                <Text>{user.name}</Text>
-              </CardItem>
+              <ProfileRow key={user.id}
+                name={this.props.users}
+              />
+
             ))}
           </Card>
 
