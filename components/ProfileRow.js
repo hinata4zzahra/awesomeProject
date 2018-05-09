@@ -11,17 +11,13 @@ import {
   View, Text, Image, ImageBackground,
 } from 'react-native'
 
-
 export default class ProfileRow extends Component {
 
   render() {
-    console.log(this.props)
-    const {name} = this.props;
     return(
-      <CardItem header bordered title='Highlights'>
-        <Icon active name='md-person' style={{color:"#4ac0e8"}} />
-        <Text>{name}</Text>
-      </CardItem>
+      <View>
+        <Text>this is detail profile </Text>
+      </View>
     )
   }
 }

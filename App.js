@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 import {StackNavigator} from 'react-navigation'
 
-import profileRow from './components/profileRow'
+import ProfileRow from './components/ProfileRow'
 import profileList from './components/profileList'
 
 const RootNavigator = StackNavigator({
@@ -12,8 +12,8 @@ const RootNavigator = StackNavigator({
       header: null
     }
   },
-  profileRow: {
-    screen: profileRow,
+  ProfileRow: {
+    screen: ProfileRow,
     navigationOptions :{
       header: null
     }

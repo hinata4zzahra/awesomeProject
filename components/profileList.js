@@ -55,7 +55,7 @@ export default class profileList extends Component {
 
 
   componentWillMount(){
-    this.allProfiles()
+    this.allProfiles
   }
 
   render() {
@@ -69,8 +69,8 @@ export default class profileList extends Component {
             <Left>
               <Thumbnail source={require('../img/user.png')} />
               <Body>
-                <Text>{this.state.profiles[0].name}</Text>
-                <Text note>{this.state.profiles[0].position}</Text>
+                <Text>{this.state.users[0].name}</Text>
+                <Text note>{this.state.users[0].position}</Text>
               </Body>
             </Left>
           </CardItem>
@@ -111,11 +111,13 @@ export default class profileList extends Component {
 
           <Card>
             <Text style={{paddingLeft:25}}>Highlights</Text>
-            {this.state.profiles.map((profile) => (
-              <ProfileRow key={profile.id}
-                name={this.props.profiles}
-              />
-
+            {this.state.users.map((user) => (
+              <CardItem header bordered title='Highlights' key={user.id}>
+                <Icon active name='md-person' style={{color:"#4ac0e8"}} />
+                <TouchableOpacity onPress={()=>this.props.navigation.navigate('ProfileRow')}>
+                  <Text>{user.name}</Text>
+                </TouchableOpacity>
+              </CardItem>
             ))}
           </Card>
 
